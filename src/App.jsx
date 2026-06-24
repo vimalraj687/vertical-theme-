@@ -266,7 +266,7 @@ export default function App() {
   const [team1Name, setTeam1Name] = useState("");
   const [team2Name, setTeam2Name] = useState(" ");
   const [team1Score, setTeam1Score] = useState("");
-  const [team2Score, setTeam2Score] = useState("Bowling");
+  const [team2Score, setTeam2Score] = useState(" ");
   const [liveScore, setLiveScore] = useState(" ");
   const [strikerName, setStrikerName] = useState(" ");
   const [strikerRuns, setStrikerRuns] = useState("");
@@ -811,107 +811,101 @@ export default function App() {
             </div>
 
             {/* TOP GLOW */}
-            <div className="absolute inset-x-0 top-0 h-[400px] bg-cyan-500/5 blur-[150px] pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-[500px] bg-cyan-500/5 blur-[150px] pointer-events-none" />
 
             {/* SCOREBOARD / HEADER */}
-            <div className="card-entrance-top w-full">
+            <div className="card-entrance-top w-full h-[500px]">
               <GlassCard
                 gradient={theme.header}
-                className="px-8 py-6 overflow-visible glass-card-glow"
+                className="px-8 py-6 overflow-visible glass-card-glow h-[500px]"
               >
                 <div className="absolute inset-0 overflow-hidden">
                   <div className="scanline absolute inset-x-0 h-28 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
                 </div>
-
-                <div className="relative flex flex-col gap-5">
-                  {/* Live Indicator Banner */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                    <div className="flex items-center gap-3">
-                      <span className="h-3 w-3 rounded-full bg-red-500 animate-ping" />
-                      <div
-                        className={"rounded-full px-5 py-1 text-sm font-black pulseGlow " + (theme.live?.startsWith('#') ? "" : "bg-gradient-to-r " + theme.live)}
-                        style={theme.live?.startsWith('#') ? { backgroundImage: 'linear-gradient(to right, ' + theme.live + ', ' + theme.live + '80)' } : {}}
-                      >
-                        LIVE
+                <div className="flex h-full flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                      <div className="flex items-center gap-3">
+                        <span className="h-3 w-3 rounded-full bg-red-500 animate-ping" />
+                        <div
+                          className={"rounded-full px-5 py-1 text-sm font-black pulseGlow " + (theme.live?.startsWith('#') ? "" : "bg-gradient-to-r " + theme.live)}
+                          style={theme.live?.startsWith('#') ? { backgroundImage: 'linear-gradient(to right, ' + theme.live + ', ' + theme.live + '80)' } : {}}
+                        >
+                          LIVE
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="flex-1 max-w-[60%]">
-                      <EditableText
-                        value={liveScore}
-                        onChange={setLiveScore}
-                        className="text-lg font-bold tracking-wider text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)] blink"
-                        align="right"
-                        placeholder="MATCH LIVE"
-                      />
-                    </div>
+                      <div className="flex-1 max-w-[60%]">
+                        <EditableText
+                          value={liveScore}
+                          onChange={setLiveScore}
+                          className="text-lg font-bold tracking-wider text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)] blink"
+                          align="right"
+                          placeholder="MATCH LIVE"
+                        />
+                      </div>
 
-                    <div className="text-xs text-white/40 font-mono tracking-widest ml-4 shrink-0">
-                      OVERLAY V2.0
+                      <div className="text-xs text-white/40 font-mono tracking-widest ml-4 shrink-0">
+                        OVERLAY V2.0
+                      </div>
                     </div>
                   </div>
 
-                  {/* Teams Scores Row */}
-                  <div className="flex items-center justify-between gap-4">
-                    {/* Team 1 Card */}
-                    <div
-                      className="flex-1 p-5 rounded-2xl border border-white/10 bg-black/35 hover:border-cyan-400/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col gap-2 relative overflow-hidden group"
-                    >
-                      {/* HUD corners */}
-                      <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t border-l border-cyan-400/40" />
-                      <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t border-r border-cyan-400/40" />
+                  <div className="mt-6">
+                    <div className="flex items-center justify-between gap-6">
+                      <div
+                        className="flex-1 min-h-[190px] p-6 rounded-[28px] border border-white/10 bg-black/35 hover:border-cyan-400/40 hover:shadow-[0_0_24px_rgba(6,182,212,0.32)] transition-all duration-300 flex flex-col gap-3 relative overflow-hidden group"
+                      >
+                        <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t border-l border-cyan-400/40" />
+                        <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t border-r border-cyan-400/40" />
 
-                      <div className="text-[10px] font-bold text-white/50 tracking-wider"> </div>
-                      <EditableText
-                        value={team1Name}
-                        onChange={setTeam1Name}
-                        className="text-4xl font-black leading-none"
-                        isShimmer={true}
-                        shimmerClass="text-shimmer-cyan"
-                        align="left"
-                        placeholder="TEAM 1"
-                      />
-                      <EditableText
-                        value={team1Score}
-                        onChange={setTeam1Score}
-                        className="text-2xl font-black text-white/95 mt-1"
-                        align="left"
-                        placeholder="0/0"
-                      />
-                    </div>
+                        <EditableText
+                          value={team1Name}
+                          onChange={setTeam1Name}
+                          className="text-5xl font-black leading-none"
+                          isShimmer={true}
+                          shimmerClass="text-shimmer-cyan"
+                          align="left"
+                          placeholder="TEAM 1"
+                        />
+                        <EditableText
+                          value={team1Score}
+                          onChange={setTeam1Score}
+                          className="text-3xl font-black text-white/95 mt-2"
+                          align="left"
+                          placeholder="0/0"
+                        />
+                      </div>
 
-                    {/* VS Indicator */}
-                    <div
-                      className="h-14 w-14 rounded-full border border-white/15 bg-white/5 flex items-center justify-center font-black text-lg text-white/90 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:scale-110 hover:border-cyan-300 transition-all duration-300 shrink-0"
-                    >
-                      VS
-                    </div>
+                      <div
+                        className="h-16 w-16 rounded-full border border-white/15 bg-white/5 flex items-center justify-center font-black text-xl text-white/90 shadow-[0_0_24px_rgba(255,255,255,0.08)] hover:scale-110 hover:border-cyan-300 transition-all duration-300 shrink-0"
+                      >
+                        VS
+                      </div>
 
-                    {/* Team 2 Card */}
-                    <div
-                      className="flex-1 p-5 rounded-2xl border border-white/10 bg-black/35 hover:border-orange-400/40 hover:shadow-[0_0_20px_rgba(249,115,22,0.25)] transition-all duration-300 flex flex-col gap-2 relative overflow-hidden group"
-                    >
-                      {/* HUD corners */}
-                      <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t border-l border-orange-400/40" />
-                      <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t border-r border-orange-400/40" />
+                      <div
+                        className="flex-1 min-h-[190px] p-6 rounded-[28px] border border-white/10 bg-black/35 hover:border-orange-400/40 hover:shadow-[0_0_24px_rgba(249,115,22,0.32)] transition-all duration-300 flex flex-col gap-3 relative overflow-hidden group"
+                      >
+                        <div className="absolute top-1.5 left-1.5 w-2.5 h-2.5 border-t border-l border-orange-400/40" />
+                        <div className="absolute top-1.5 right-1.5 w-2.5 h-2.5 border-t border-r border-orange-400/40" />
 
-                      <div className="text-[10px] font-bold text-white/50 tracking-wider"> </div>
-                      <EditableText
-                        value={team2Name}
-                        onChange={setTeam2Name}
-                        className="text-4xl font-black leading-none"
-                        isShimmer={true}
-                        shimmerClass="text-shimmer-gold"
-                        align="left"
-                        placeholder="TEAM 2"
-                      />
-                      <EditableText
-                        value={team2Score}
-                        onChange={setTeam2Score}
-                        className="text-2xl font-black text-white/95 mt-1"
-                        align="left"
-                        placeholder="Bowling"
-                      />
+                        <EditableText
+                          value={team2Name}
+                          onChange={setTeam2Name}
+                          className="text-5xl font-black leading-none"
+                          isShimmer={true}
+                          shimmerClass="text-shimmer-gold"
+                          align="left"
+                          placeholder="TEAM 2"
+                        />
+                        <EditableText
+                          value={team2Score}
+                          onChange={setTeam2Score}
+                          className="text-3xl font-black text-white/95 mt-2"
+                          align="left"
+                          placeholder="Bowling"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
